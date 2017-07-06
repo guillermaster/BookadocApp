@@ -21,14 +21,6 @@ export default class UserInput extends Component {
     }
 }
 
-// UserInput.propTypes = {
-// 	source: PropTypes.number.isRequired,
-// 	placeholder: PropTypes.string.isRequired,
-// 	secureTextEntry: PropTypes.bool,
-// 	autoCorrect: PropTypes.bool,
-// 	autoCapitalize: PropTypes.string,
-// 	returnKeyType: PropTypes.string,
-// };
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 const DEVICE_HEIGHT = Dimensions.get('window').height;
