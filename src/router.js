@@ -7,7 +7,8 @@ export const SignedOut = StackNavigator({
   SignIn: {
     screen: LoginScreen,
     navigationOptions: {
-      title: "Sign In"
+      title: "Sign In",
+      header: null
     }
   },
   SignUp: {

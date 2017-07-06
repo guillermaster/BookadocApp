@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -8,12 +8,18 @@ import {
   Text,
   ScrollView
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 
 import { RkButton, RkText, RkTextInput, RkSeparator } from 'react-native-ui-kitten';
 
-//import AppWrapper from './../../shared/blur/AppWrapper';
 import Wallpaper from './Wallpaper';
 import Form from './Form';
+
+const navigateActionSignUp = NavigationActions.navigate({
+  routeName: 'SignUp',
+  params: {},
+  action: NavigationActions.navigate({ routeName: 'SubProfileRoute'})
+})
 
 export default class LoginScreen extends Component {
 	constructor(props){
@@ -31,8 +37,7 @@ export default class LoginScreen extends Component {
 			<View style={styles.container}>
 				<ScrollView>
 					<Image style={styles.logoImg} source={require('../../../img/react_logo.png')}/>
-	             	<RkText style={styles.title}>React Native</RkText>
-	              	<RkText style={styles.subTitle}>Essentials</RkText>
+	             	<RkText style={styles.title}>Book <Text style={styles.subTitle}>a</Text> Doc</RkText>
 	              	<View style={{flexDirection: 'row', justifyContent: 'center'}}>
             			<View style={styles.widthLimit}>
                 			<RkTextInput
@@ -58,13 +63,16 @@ export default class LoginScreen extends Component {
 		                	<RkButton innerStyle={styles.buttonInner}
 		                          style={styles.buttonContainer}
 		                          rkType='circle shadow'
-		                          onPress={this.doLogin()}>
+		                          onPress={() => this.doLogin()}>
 		                		<RkText>Log In</RkText>
 		                	</RkButton>
 		              	</View>		              	
 		            </View>
 		            <RkText style={styles.footText}>
-          				Don't have account? Sign up
+          				Don't have account? 
+          				<Text onPress={() => this.props.navigation.dispatch(navigateActionSignUp)}>
+          					Sign up
+          				</Text>
           			</RkText>
 				</ScrollView>
 			</View>
@@ -98,7 +106,8 @@ let styles = StyleSheet.create({
     marginTop: 5,
     fontSize: 42,
     textAlign: 'center',
-    fontWeight: '500'
+    fontWeight: '500',
+    color: '#fff'
   },
   subTitle: {
     fontSize: 36,
