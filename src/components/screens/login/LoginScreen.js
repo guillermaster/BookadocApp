@@ -9,7 +9,6 @@ import {
   ScrollView
 } from 'react-native';
 
-import Icon from 'react-native-vector-icons/Ionicons';
 import { RkButton, RkText, RkTextInput, RkSeparator } from 'react-native-ui-kitten';
 
 //import AppWrapper from './../../shared/blur/AppWrapper';
@@ -17,39 +16,60 @@ import Wallpaper from './Wallpaper';
 import Form from './Form';
 
 export default class LoginScreen extends Component {
+	constructor(props){
+		super(props);
+		this.doLogin.bind(this);
+	}
+
+	doLogin(){
+		console.log('ldoLogin');
+	}
+
   render() {
     return (
-    	<View>
-    			<View style={styles.container}>
-    				<View>
-    					<Image style={styles.logoImg} source={require('../../../img/react_logo.png')}/>
-		             	<RkText style={styles.title}><RkText style={styles.extraBold}>React</RkText> Native</RkText>
-		              	<RkText style={styles.subTitle}>Essentials</RkText>
-		              	<View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                			<View style={styles.widthLimit}>
-	                			<RkTextInput
-				                    rkType='rounded'
-				                    containerStyle={styles.inputContainer}
-				                    label={<Icon name='ios-person-outline'/>}
-				                    labelStyle={styles.inputIcon}
-				                    style={styles.input}
-				                    placeholder={'Login'}
-				                    placeholderTextColor={'#C0C0C0'}/>
+    	<Wallpaper>
+			<View style={styles.container}>
+				<ScrollView>
+					<Image style={styles.logoImg} source={require('../../../img/react_logo.png')}/>
+	             	<RkText style={styles.title}>React Native</RkText>
+	              	<RkText style={styles.subTitle}>Essentials</RkText>
+	              	<View style={{flexDirection: 'row', justifyContent: 'center'}}>
+            			<View style={styles.widthLimit}>
+                			<RkTextInput
+			                    rkType='rounded'
+			                    containerStyle={styles.inputContainer}
+			                    labelStyle={styles.inputIcon}
+			                    style={styles.input}
+			                    placeholder={'Login'}
+			                    placeholderTextColor={'#C0C0C0'}/>
 
-				                <RkTextInput
-				                    rkType='rounded'
-				                    containerStyle={styles.inputContainer}
-				                    label={<Icon name='ios-lock-outline'/>}
-				                    labelStyle={[styles.inputIcon, styles.inputIconLock]}
-				                    style={styles.input}
-				                    secureTextEntry={true}
-				                    placeholder={'Password'}
-				                    placeholderTextColor={'#C0C0C0'}/>
-                			</View>
-                		</View>
-    				</View>
-    			</View>
-    	</View>
+			                <RkTextInput
+			                    rkType='rounded'
+			                    containerStyle={styles.inputContainer}
+			                    labelStyle={[styles.inputIcon, styles.inputIconLock]}
+			                    style={styles.input}
+			                    secureTextEntry={true}
+			                    placeholder={'Password'}
+			                    placeholderTextColor={'#C0C0C0'}/>
+            			</View>
+            		</View>
+            		<View style={{flexDirection: 'row', justifyContent: 'center'}}>
+		            	<View style={styles.widthLimit}>
+		                	<RkButton innerStyle={styles.buttonInner}
+		                          style={styles.buttonContainer}
+		                          rkType='circle shadow'
+		                          onPress={this.doLogin()}>
+		                		<RkText>Log In</RkText>
+		                	</RkButton>
+		              	</View>		              	
+		            </View>
+		            <RkText style={styles.footText}>
+          				Don't have account? Sign up
+          			</RkText>
+				</ScrollView>
+			</View>
+    	</Wallpaper>
+    	
     );
   }
 }
@@ -101,10 +121,6 @@ let styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    color: '#ffffff',
-    fontWeight: '300',
-    fontSize: 20,
-    textAlign: 'left',
     height: 40,
     marginHorizontal: 10
   },
