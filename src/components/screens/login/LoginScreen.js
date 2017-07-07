@@ -13,7 +13,7 @@ import { NavigationActions } from 'react-navigation';
 import { RkButton, RkText, RkTextInput, RkSeparator } from 'react-native-ui-kitten';
 
 import Wallpaper from './Wallpaper';
-import Form from './Form';
+import BaDTextInput from './../../shared/BaDTextInput';
 
 const navigateActionSignUp = NavigationActions.navigate({
   routeName: 'SignUp',
@@ -31,7 +31,11 @@ export default class LoginScreen extends Component {
 		console.log('ldoLogin');
 	}
 
-  render() {
+  usernameTextChanged(username){
+    console.log(username);
+  }
+
+  render() {    
     return (
     	<Wallpaper>
 			<View style={styles.container}>
@@ -40,13 +44,8 @@ export default class LoginScreen extends Component {
 	             	<RkText style={styles.title}>Book <Text style={styles.subTitle}>a</Text> Doc</RkText>
 	              	<View style={{flexDirection: 'row', justifyContent: 'center'}}>
             			<View style={styles.widthLimit}>
-                			<RkTextInput
-			                    rkType='rounded'
-			                    containerStyle={styles.inputContainer}
-			                    labelStyle={styles.inputIcon}
-			                    style={styles.input}
-			                    placeholder={'Login'}
-			                    placeholderTextColor={'#C0C0C0'}/>
+                			<BaDTextInput placeholder={'Login'}
+			                    onChangeText={this.usernameTextChanged.bind(this)}/>
 
 			                <RkTextInput
 			                    rkType='rounded'
@@ -59,18 +58,18 @@ export default class LoginScreen extends Component {
             			</View>
             		</View>
             		<View style={{flexDirection: 'row', justifyContent: 'center'}}>
-		            	<View style={styles.widthLimit}>
+		            	<View style={{flexDirection: 'row', justifyContent: 'center'}}>
 		                	<RkButton innerStyle={styles.buttonInner}
 		                          style={styles.buttonContainer}
 		                          rkType='circle shadow'
 		                          onPress={() => this.doLogin()}>
-		                		<RkText>Log In</RkText>
+		                		<RkText style={{color: '#195ccf'}}>Continue</RkText>
 		                	</RkButton>
 		              	</View>		              	
 		            </View>
 		            <RkText style={styles.footText}>
-          				Don't have account? 
-          				<Text onPress={() => this.props.navigation.dispatch(navigateActionSignUp)}>
+          				Don't have account?  
+          				<Text style={{marginLeft: 10}} onPress={() => this.props.navigation.dispatch(navigateActionSignUp)}>
           					Sign up
           				</Text>
           			</RkText>
@@ -95,6 +94,7 @@ let styles = StyleSheet.create({
     flex: 1,
     maxWidth: 275,
     minHeight: 120,
+    justifyContent: 'center'
   },
   logoImg: {
     alignSelf: 'center',
@@ -140,8 +140,8 @@ let styles = StyleSheet.create({
     backgroundColor: 'transparent'
   },
   buttonContainer: {
-    backgroundColor: '#000000',
-    shadowColor: '#000000',
+    backgroundColor: '#8ccee7',
+    shadowColor: '#599eb8',
     paddingVertical: 12,
     shadowRadius: 12,
     shadowOpacity: 0.4,
