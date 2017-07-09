@@ -11,9 +11,10 @@ import {
 import { NavigationActions } from 'react-navigation';
 
 import { RkButton, RkText, RkTextInput, RkSeparator } from 'react-native-ui-kitten';
+import { TextField } from 'react-native-material-textfield';
 
-import Wallpaper from './Wallpaper';
-import BaDTextInput from './../../shared/BaDTextInput';
+import SignedOutWallpaper from './../../shared/SignedOutWallpaper';
+import { InputTextColors } from './../../../config/Colors';
 
 const navigateActionSignUp = NavigationActions.navigate({
   routeName: 'SignUp',
@@ -24,58 +25,68 @@ const navigateActionSignUp = NavigationActions.navigate({
 export default class LoginScreen extends Component {
 	constructor(props){
 		super(props);
-		this.doLogin.bind(this);
+		state = {
+      email: '',
+      password: ''
+    }
 	}
 
 	doLogin(){
-		console.log('ldoLogin');
+		debugger
 	}
 
-  usernameTextChanged(username){
-    console.log(username);
-  }
+  // usernameTextChanged(username){
+  //   debugger
+  // }
+
+  // passwordTextChanged(password){
+  //   debugger
+  // }
 
   render() {    
     return (
-    	<Wallpaper>
-			<View style={styles.container}>
-				<ScrollView>
-					<Image style={styles.logoImg} source={require('../../../img/react_logo.png')}/>
-	             	<RkText style={styles.title}>Book <Text style={styles.subTitle}>a</Text> Doc</RkText>
-	              	<View style={{flexDirection: 'row', justifyContent: 'center'}}>
-            			<View style={styles.widthLimit}>
-                			<BaDTextInput placeholder={'Login'}
-			                    onChangeText={this.usernameTextChanged.bind(this)}/>
-
-			                <RkTextInput
-			                    rkType='rounded'
-			                    containerStyle={styles.inputContainer}
-			                    labelStyle={[styles.inputIcon, styles.inputIconLock]}
-			                    style={styles.input}
-			                    secureTextEntry={true}
-			                    placeholder={'Password'}
-			                    placeholderTextColor={'#C0C0C0'}/>
-            			</View>
-            		</View>
-            		<View style={{flexDirection: 'row', justifyContent: 'center'}}>
-		            	<View style={{flexDirection: 'row', justifyContent: 'center'}}>
-		                	<RkButton innerStyle={styles.buttonInner}
-		                          style={styles.buttonContainer}
-		                          rkType='circle shadow'
-		                          onPress={() => this.doLogin()}>
-		                		<RkText style={{color: '#195ccf'}}>Continue</RkText>
-		                	</RkButton>
-		              	</View>		              	
-		            </View>
-		            <RkText style={styles.footText}>
-          				Don't have account?  
-          				<Text style={{marginLeft: 10}} onPress={() => this.props.navigation.dispatch(navigateActionSignUp)}>
-          					Sign up
-          				</Text>
-          			</RkText>
-				</ScrollView>
-			</View>
-    	</Wallpaper>
+    	<SignedOutWallpaper>
+        <View style={styles.container}>
+          <ScrollView>
+            <Image style={styles.logoImg} source={require('../../../img/react_logo.png')}/>
+              <Text style={styles.title}>Book <Text style={styles.subTitle}>a</Text> Doc</Text>
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <View style={styles.widthLimit}>
+                    <TextField 
+                      label={'Correo electrónico'} 
+                      keyboardType={'email-address'}
+                      tintColor={InputTextColors.tintColor} 
+                      baseColor={InputTextColors.baseColor} 
+                      textColor={InputTextColors.textColor}
+                      onChangeText={ (email => this.setState({email})) } />
+                    <TextField 
+                      label={'Contraseña'} 
+                      secureTextEntry={true}
+                      tintColor={InputTextColors.tintColor} 
+                      baseColor={InputTextColors.baseColor} 
+                      textColor={InputTextColors.textColor}
+                      onChangeText={ (password => this.setState({password})) } />
+                </View>
+              </View>
+              <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                    <RkButton innerStyle={styles.buttonInner}
+                      style={styles.buttonContainer}
+                      rkType='circle shadow'
+                      onPress={this.doLogin.bind(this)}>
+                      <Text style={{color: '#195ccf'}}>Continue</Text>
+                    </RkButton>
+                  </View>		              	
+              </View>
+              <Text style={styles.footText}>
+                Don't have account?  
+                <Text style={{marginLeft: 10}} onPress={() => this.props.navigation.dispatch(navigateActionSignUp)}>
+                  Sign up
+                </Text>
+              </Text>
+          </ScrollView>
+        </View>
+    	</SignedOutWallpaper>
     	
     );
   }

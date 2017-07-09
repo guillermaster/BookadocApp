@@ -4,61 +4,63 @@ import { NavigationActions } from 'react-navigation'
 
 import { RkButton, RkText, RkTextInput, RkSeparator } from 'react-native-ui-kitten';
 
+import SignedOutWallpaper from './../../shared/SignedOutWallpaper';
+import BaDTextInput from './../../shared/BaDTextInput';
+
 const navigateAction = NavigationActions.navigate({
-
   routeName: 'SignIn',
-
   params: {},
-
   action: NavigationActions.navigate({ routeName: 'SubProfileRoute'})
 })
 
 export default class SignupScreen extends React.Component {
+
+	nameTextChanged(username){
+    debugger
+  }
+
   render() {
     return (
-    	<View style={styles.container}>
-    		<ScrollView>
-    			<View style={{flexDirection: 'row', justifyContent: 'center'}}>
-    				<RkTextInput
-	                    rkType='rounded'
-	                    containerStyle={styles.inputContainer}
-	                    labelStyle={styles.inputIcon}
-	                    style={styles.input}
-	                    placeholder={'Nombre'}
-	                    placeholderTextColor={'#C0C0C0'} />
-	                <RkTextInput
-	                    rkType='rounded'
-	                    containerStyle={styles.inputContainer}
-	                    labelStyle={styles.inputIcon}
-	                    style={styles.input}
-	                    placeholder={'Correo electrónico'}
-	                    placeholderTextColor={'#C0C0C0'} />
-	                <RkTextInput
-	                    rkType='rounded'
-	                    containerStyle={styles.inputContainer}
-	                    labelStyle={[styles.inputIcon, styles.inputIconLock]}
-	                    style={styles.input}
-	                    secureTextEntry={true}
-	                    placeholder={'Contraseña'}
-	                    placeholderTextColor={'#C0C0C0'}/>
-	                <RkTextInput
-	                    rkType='rounded'
-	                    containerStyle={styles.inputContainer}
-	                    labelStyle={[styles.inputIcon, styles.inputIconLock]}
-	                    style={styles.input}
-	                    secureTextEntry={true}
-	                    placeholder={'Confirmación de contraseña'}
-	                    placeholderTextColor={'#C0C0C0'}/>
-    			</View>
-	    		<Button
-	        		buttonStyle={{ marginTop: 20 }}
-	        		backgroundColor="transparent"
-	        		textStyle={{ color: "#bcbec1" }}
-	        		title="Sign In"
-	        		onPress={() =>this.props.navigation.dispatch(navigateAction)}
-	      		/>
-      		</ScrollView>
-    	</View>
+			<SignedOutWallpaper>
+				<View style={styles.container}>
+					<ScrollView>
+						
+							<BaDTextInput label={'Name'}
+								onChangeText={this.nameTextChanged.bind(this)} />
+
+										<RkTextInput
+												rkType='rounded'
+												style={styles.input}
+												inputStyle={{color: '#000'}}
+												placeholder={'Correo electrónico'}
+												placeholderTextColor={'#000'} />
+										<RkTextInput
+												rkType='rounded'
+												containerStyle={styles.inputContainer}
+												labelStyle={[styles.inputIcon, styles.inputIconLock]}
+												style={styles.input}
+												secureTextEntry={true}
+												placeholder={'Contraseña'}
+												placeholderTextColor={'#0848b7'}/>
+										<RkTextInput
+												rkType='rounded'
+												containerStyle={styles.inputContainer}
+												labelStyle={[styles.inputIcon, styles.inputIconLock]}
+												style={styles.input}
+												secureTextEntry={true}
+												placeholder={'Confirmación de contraseña'}
+												placeholderTextColor={'#ffffff'}/>
+						
+						<Button
+								buttonStyle={{ marginTop: 20 }}
+								backgroundColor="transparent"
+								textStyle={{ color: "#bcbec1" }}
+								title="Sign In"
+								onPress={() =>this.props.navigation.dispatch(navigateAction)}
+							/>
+						</ScrollView>
+				</View>
+			</SignedOutWallpaper>
     );
   }
 }
@@ -84,7 +86,9 @@ let styles = StyleSheet.create({
   input: {
     flex: 1,
     height: 40,
-    marginHorizontal: 10
+    marginHorizontal: 10,
+		backgroundColor: '#fff',
+		opacity: 0.1
   }
  }
 );

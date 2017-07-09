@@ -14,7 +14,8 @@ export const SignedOut = StackNavigator({
   SignUp: {
     screen: SignupScreen,
     navigationOptions: {
-      title: "Sign Up"
+      title: "Sign Up",
+      header: null
     }
   }  
 });
