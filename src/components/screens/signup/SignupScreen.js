@@ -1,11 +1,13 @@
 import React from "react";
-import { View, Button, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import { NavigationActions } from 'react-navigation'
 
-import { RkButton, RkText, RkTextInput, RkSeparator } from 'react-native-ui-kitten';
+import { RkButton } from 'react-native-ui-kitten';
+import { TextField } from 'react-native-material-textfield';
 
 import SignedOutWallpaper from './../../shared/SignedOutWallpaper';
-import BaDTextInput from './../../shared/BaDTextInput';
+import { InputTextColors } from './../../../config/Colors';
+import { SignedOutTitleStyles } from './../../../config/Styles';
 
 const navigateAction = NavigationActions.navigate({
   routeName: 'SignIn',
@@ -14,50 +16,71 @@ const navigateAction = NavigationActions.navigate({
 })
 
 export default class SignupScreen extends React.Component {
+	constructor(props){
+		super(props);
+		state = {
+			name: '',
+			lastName: '',
+			email: '',
+			password: '',
+			passwordConf: '',
+		}
+	}
 
-	nameTextChanged(username){
-    debugger
-  }
+	doSignUp() {
+
+	}
 
   render() {
     return (
 			<SignedOutWallpaper>
 				<View style={styles.container}>
 					<ScrollView>
-						
-							<BaDTextInput label={'Name'}
-								onChangeText={this.nameTextChanged.bind(this)} />
+						<Text style={SignedOutTitleStyles.title}>Book <Text style={SignedOutTitleStyles.subTitle}>a</Text> Doc</Text>
+						<Text style={styles.subTitle}>Crea tu cuenta</Text>
+						<TextField 
+							label={'Nombre'} 
+							tintColor={InputTextColors.tintColor} 
+							baseColor={InputTextColors.baseColor} 
+							textColor={InputTextColors.textColor}
+							onChangeText={ (name => this.setState({name})) } />
 
-										<RkTextInput
-												rkType='rounded'
-												style={styles.input}
-												inputStyle={{color: '#000'}}
-												placeholder={'Correo electrónico'}
-												placeholderTextColor={'#000'} />
-										<RkTextInput
-												rkType='rounded'
-												containerStyle={styles.inputContainer}
-												labelStyle={[styles.inputIcon, styles.inputIconLock]}
-												style={styles.input}
-												secureTextEntry={true}
-												placeholder={'Contraseña'}
-												placeholderTextColor={'#0848b7'}/>
-										<RkTextInput
-												rkType='rounded'
-												containerStyle={styles.inputContainer}
-												labelStyle={[styles.inputIcon, styles.inputIconLock]}
-												style={styles.input}
-												secureTextEntry={true}
-												placeholder={'Confirmación de contraseña'}
-												placeholderTextColor={'#ffffff'}/>
+						<TextField 
+							label={'Apellido'} 
+							tintColor={InputTextColors.tintColor} 
+							baseColor={InputTextColors.baseColor} 
+							textColor={InputTextColors.textColor}
+							onChangeText={ (lastName => this.setState({lastName})) } />
 						
-						<Button
-								buttonStyle={{ marginTop: 20 }}
-								backgroundColor="transparent"
-								textStyle={{ color: "#bcbec1" }}
-								title="Sign In"
-								onPress={() =>this.props.navigation.dispatch(navigateAction)}
-							/>
+						<TextField 
+							label={'Correo electrónico'} 
+							tintColor={InputTextColors.tintColor} 
+							baseColor={InputTextColors.baseColor} 
+							textColor={InputTextColors.textColor}
+							onChangeText={ (email => this.setState({email})) } />
+
+						<TextField 
+							label={'Contraseña'} 
+							secureTextEntry={true}
+							tintColor={InputTextColors.tintColor} 
+							baseColor={InputTextColors.baseColor} 
+							textColor={InputTextColors.textColor}
+							onChangeText={ (password => this.setState({password})) } />
+
+						<TextField 
+							label={'Confirmación de contraseña'} 
+							secureTextEntry={true}
+							tintColor={InputTextColors.tintColor} 
+							baseColor={InputTextColors.baseColor} 
+							textColor={InputTextColors.textColor}
+							onChangeText={ (passwordConf => this.setState({passwordConf})) } />
+						
+							<RkButton innerStyle={styles.buttonInner}
+								style={styles.buttonContainer}
+								rkType='circle shadow'
+								onPress={this.doSignUp.bind(this)}>
+								<Text style={{color: '#195ccf'}}>Continue</Text>
+							</RkButton>
 						</ScrollView>
 				</View>
 			</SignedOutWallpaper>
@@ -68,7 +91,7 @@ export default class SignupScreen extends React.Component {
 let styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
-    paddingTop: 70,
+    paddingTop: 20,
     paddingBottom: 20,
     flex: 1,
     justifyContent: 'space-between',
@@ -89,6 +112,25 @@ let styles = StyleSheet.create({
     marginHorizontal: 10,
 		backgroundColor: '#fff',
 		opacity: 0.1
+  },
+	buttonContainer: {
+    backgroundColor: '#8ccee7',
+    shadowColor: '#599eb8',
+    paddingVertical: 12,
+    shadowRadius: 12,
+    shadowOpacity: 0.4,
+    marginTop: 40,
+  },
+  buttonInner: {
+    fontSize: 22,
+    color: 'white',
+  },
+  subTitle: {
+    fontSize: 24,
+    textAlign: 'left',
+    fontWeight: '200',
+    marginBottom: 5,
+		color: '#fff'
   }
  }
 );
