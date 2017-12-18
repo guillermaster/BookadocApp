@@ -14,7 +14,7 @@ import { RkButton, RkText, RkTextInput, RkSeparator } from 'react-native-ui-kitt
 import { TextField } from 'react-native-material-textfield';
 
 import SignedOutWallpaper from './../../shared/SignedOutWallpaper';
-import { InputTextColors } from './../../../config/Colors';
+import { InputTextColors } from './../../../styles/Colors';
 
 const navigateActionSignUp = NavigationActions.navigate({
   routeName: 'SignUp',

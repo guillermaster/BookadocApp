@@ -6,8 +6,8 @@ import { RkButton } from 'react-native-ui-kitten';
 import { TextField } from 'react-native-material-textfield';
 
 import SignedOutWallpaper from './../../shared/SignedOutWallpaper';
-import { InputTextColors } from './../../../config/Colors';
-import { SignedOutTitleStyles } from './../../../config/Styles';
+import { InputTextColors } from './../../../styles/Colors';
+import { SignedOutTitleStyles } from './../../../styles/SignedOutTitleStyles';
 
 const navigateAction = NavigationActions.navigate({
   routeName: 'SignIn',
